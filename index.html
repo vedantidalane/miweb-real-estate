@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>NestFind – Find Your Dream Property</title>
+  <meta name="description" content="Discover your perfect home with NestFind. Browse thousands of properties for sale and rent across the country."/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg main-nav sticky-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><i class="fas fa-house-chimney-user me-2"></i>NestFind</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav me-auto gap-1">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="properties.html">Properties</a></li>
+        <li class="nav-item"><a class="nav-link" href="favourites.html"><i class="fas fa-heart me-1"></i>Favourites</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2">
+        <button class="icon-btn" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+        <div id="authNav"><a href="login.html" class="btn btn-outline-primary btn-sm me-2">Sign In</a><a href="register.html" class="btn btn-primary-custom btn-sm">Register</a></div>
+        <div id="userNav" class="d-none">
+          <div class="dropdown"><button class="profile-pill" data-bs-toggle="dropdown"><img src="" alt="" id="navUserAvatar" class="rounded-circle" style="width:32px;height:32px"/><span id="navUserName"></span><i class="fas fa-chevron-down small"></i></button>
+            <ul class="dropdown-menu dropdown-menu-end"><li><a class="dropdown-item" href="favourites.html"><i class="fas fa-heart me-2"></i>Favourites</a></li><li><hr class="dropdown-divider"/></li><li><a class="dropdown-item text-danger" href="#" id="logoutBtn"><i class="fas fa-right-from-bracket me-2"></i>Logout</a></li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="container position-relative" style="z-index:2">
+    <div class="row align-items-center min-vh-60">
+      <div class="col-lg-6">
+        <div class="hero-content">
+          <div class="hero-badge"><i class="fas fa-map-marker-alt me-2"></i>10,000+ properties nationwide</div>
+          <h1 class="hero-title">Find Your Perfect <span style="color:#a5b4fc">Dream Home</span></h1>
+          <p class="hero-subtitle">Explore thousands of properties for sale and rent. Your ideal home is just a search away.</p>
+          <div class="hero-stats">
+            <div class="hero-stat"><strong>12K+</strong><span>Properties</span></div>
+            <div class="hero-stat"><strong>8K+</strong><span>Happy Clients</span></div>
+            <div class="hero-stat"><strong>500+</strong><span>Expert Agents</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 mt-4 mt-lg-0">
+        <div class="hero-search-card">
+          <h5 class="text-white fw-bold mb-3"><i class="fas fa-search me-2"></i>Search Properties</h5>
+          <div class="row g-3">
+            <div class="col-12">
+              <label>Location</label>
+              <div style="position:relative"><i class="fas fa-map-marker-alt" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.5)"></i>
+                <input type="text" class="form-control" id="heroCity" placeholder="City, neighbourhood…" style="padding-left:2.5rem"/></div>
+            </div>
+            <div class="col-6">
+              <label>Property Type</label>
+              <select class="form-select" id="heroType"><option value="">All Types</option><option>Villa</option><option>Apartment</option><option>House</option><option>Condo</option><option>Land</option></select>
+            </div>
+            <div class="col-6">
+              <label>Status</label>
+              <select class="form-select" id="heroStatus"><option value="">Buy or Rent</option><option value="For Sale">For Sale</option><option value="For Rent">For Rent</option></select>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary-custom w-100 py-2 fw-bold" onclick="doHeroSearch()">
+                <i class="fas fa-search me-2"></i>Search Properties
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="container"><div class="stats-bar-grid">
+    <div><div class="num">12,400+</div><div class="lbl">Total Listings</div></div>
+    <div><div class="num">3,200+</div><div class="lbl">Properties Sold</div></div>
+    <div><div class="num">8,000+</div><div class="lbl">Happy Clients</div></div>
+    <div><div class="num">500+</div><div class="lbl">Expert Agents</div></div>
+  </div></div>
+</div>
+
+<!-- FEATURED PROPERTIES -->
+<section class="section-pad">
+  <div class="container">
+    <div class="section-header d-flex justify-content-between align-items-end">
+      <div><h2 class="section-title">Featured <span class="text-gradient">Properties</span></h2><p class="section-sub mb-0">Hand-picked listings for you</p></div>
+      <a href="properties.html" class="btn btn-outline-primary">View All <i class="fas fa-arrow-right ms-1"></i></a>
+    </div>
+    <div class="row g-4 mt-2" id="featuredGrid"></div>
+  </div>
+</section>
+
+<!-- PROPERTY TYPES -->
+<section class="section-pad bg-alt">
+  <div class="container">
+    <div class="section-header text-center"><h2 class="section-title">Browse by <span class="text-gradient">Type</span></h2></div>
+    <div class="row g-3">
+      <div class="col-6 col-md-4 col-lg"><a href="properties.html?type=Villa" class="category-card text-center text-decoration-none d-block p-3 bg-body border rounded-3 transition"><i class="fas fa-house fa-2x mb-2 text-primary"></i><div class="fw-bold">Villa</div><small class="text-muted">Luxury Villas</small></a></div>
+      <div class="col-6 col-md-4 col-lg"><a href="properties.html?type=Apartment" class="category-card text-center text-decoration-none d-block p-3 bg-body border rounded-3"><i class="fas fa-building fa-2x mb-2 text-success"></i><div class="fw-bold">Apartment</div><small class="text-muted">Modern Flats</small></a></div>
+      <div class="col-6 col-md-4 col-lg"><a href="properties.html?type=House" class="category-card text-center text-decoration-none d-block p-3 bg-body border rounded-3"><i class="fas fa-home fa-2x mb-2 text-warning"></i><div class="fw-bold">House</div><small class="text-muted">Family Homes</small></a></div>
+      <div class="col-6 col-md-4 col-lg"><a href="properties.html?type=Condo" class="category-card text-center text-decoration-none d-block p-3 bg-body border rounded-3"><i class="fas fa-city fa-2x mb-2 text-info"></i><div class="fw-bold">Condo</div><small class="text-muted">Urban Living</small></a></div>
+      <div class="col-6 col-md-4 col-lg"><a href="properties.html?type=Land" class="category-card text-center text-decoration-none d-block p-3 bg-body border rounded-3"><i class="fas fa-map fa-2x mb-2 text-orange"></i><div class="fw-bold">Land</div><small class="text-muted">Development</small></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY NESTFIND -->
+<section class="section-pad">
+  <div class="container">
+    <div class="section-header text-center"><h2 class="section-title">Why Choose <span class="text-gradient">NestFind?</span></h2></div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3"><div class="feature-card"><div class="feature-icon" style="background:rgba(99,102,241,.1);color:#6366f1"><i class="fas fa-search-location"></i></div><h5>Smart Search</h5><p class="text-muted small">Advanced filters for price, location, type and bedrooms.</p></div></div>
+      <div class="col-md-6 col-lg-3"><div class="feature-card"><div class="feature-icon" style="background:rgba(16,185,129,.1);color:#10b981"><i class="fas fa-shield-halved"></i></div><h5>Verified Listings</h5><p class="text-muted small">All properties are verified by our expert team.</p></div></div>
+      <div class="col-md-6 col-lg-3"><div class="feature-card"><div class="feature-icon" style="background:rgba(249,115,22,.1);color:#f97316"><i class="fas fa-headset"></i></div><h5>Expert Agents</h5><p class="text-muted small">Dedicated agents to guide you through every step.</p></div></div>
+      <div class="col-md-6 col-lg-3"><div class="feature-card"><div class="feature-icon" style="background:rgba(6,182,212,.1);color:#06b6d4"><i class="fas fa-heart"></i></div><h5>Save Favourites</h5><p class="text-muted small">Save and compare your favourite properties easily.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<footer style="background:var(--bg-surface);border-top:1px solid var(--border);padding:3rem 0 1.5rem">
+  <div class="container"><div class="row g-4 mb-3">
+    <div class="col-md-4"><div style="font-size:1.3rem;font-weight:800;color:var(--primary);margin-bottom:.75rem"><i class="fas fa-house-chimney-user me-2"></i>NestFind</div><p class="text-muted small">Connecting people with their dream properties since 2020.</p></div>
+    <div class="col-md-4"><h6 style="font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:1rem">Quick Links</h6><ul class="list-unstyled"><li class="mb-1"><a href="properties.html" class="text-muted text-decoration-none small">All Properties</a></li><li class="mb-1"><a href="login.html" class="text-muted text-decoration-none small">Agent Login</a></li><li><a href="register.html" class="text-muted text-decoration-none small">Register</a></li></ul></div>
+    <div class="col-md-4"><h6 style="font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:1rem">Contact</h6><p class="text-muted small mb-1"><i class="fas fa-phone me-2"></i>+1 800 NEST-FIND</p><p class="text-muted small"><i class="fas fa-envelope me-2"></i>hello@nestfind.com</p></div>
+  </div><div style="border-top:1px solid var(--border);padding-top:1.5rem;text-align:center"><p class="text-muted small mb-0">&copy; 2024 NestFind. All rights reserved.</p></div></div>
+</footer>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/theme.js"></script><script src="js/auth.js"></script><script src="js/data.js"></script>
+<script>
+function doHeroSearch(){
+  const c=document.getElementById('heroCity').value.trim();
+  const t=document.getElementById('heroType').value;
+  const s=document.getElementById('heroStatus').value;
+  let url='properties.html?';
+  if(c)url+=`city=${encodeURIComponent(c)}&`;
+  if(t)url+=`type=${encodeURIComponent(t)}&`;
+  if(s)url+=`status=${encodeURIComponent(s)}&`;
+  window.location.href=url;
+}
+document.addEventListener('DOMContentLoaded',function(){
+  const grid=document.getElementById('featuredGrid');
+  if(!grid)return;
+  const featured=RE.properties.filter(p=>p.featured);
+  grid.innerHTML=featured.map(p=>`
+    <div class="col-md-6 col-lg-3">
+      <div class="property-card">
+        <div class="property-thumb" style="background:${RE.gradients[p.gradient]}">
+          <i class="fas ${RE.icons[p.icon]}"></i>
+          <span class="property-badge property-badge-${p.status.replace(/ /g,'-')}">${p.status}</span>
+          <button class="property-fav-btn ${RE.isFav(p.id)?'active':''}" onclick="toggleFav(${p.id},this)"><i class="fas fa-heart"></i></button>
+          <span class="property-price-tag">${RE.priceLabel(p.price,p.status)}</span>
+        </div>
+        <div class="property-body">
+          <div class="property-type">${p.type}</div>
+          <h6 class="property-title"><a href="property-detail.html?id=${p.id}" class="text-decoration-none">${p.title}</a></h6>
+          <div class="property-location"><i class="fas fa-map-marker-alt"></i>${p.location}</div>
+          <div class="property-specs">
+            ${p.bedrooms>0?`<span><i class="fas fa-bed"></i>${p.bedrooms} Beds</span>`:''}
+            ${p.bathrooms>0?`<span><i class="fas fa-bath"></i>${p.bathrooms} Baths</span>`:''}
+            <span><i class="fas fa-ruler-combined"></i>${p.area.toLocaleString()} sqft</span>
+          </div>
+        </div>
+      </div>
+    </div>`).join('');
+});
+function toggleFav(id,btn){
+  const added=RE.toggleFav(id);
+  btn.classList.toggle('active',added);
+  showToast(added?'Added to favourites!':'Removed from favourites.',added?'success':'warning');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>All Properties – NestFind</title>
+  <meta name="description" content="Browse all real estate listings. Filter by type, price, bedrooms and location on NestFind."/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg main-nav sticky-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="index.html"><i class="fas fa-house-chimney-user me-2"></i>NestFind</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav me-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="properties.html">Properties</a></li>
+        <li class="nav-item"><a class="nav-link" href="favourites.html"><i class="fas fa-heart me-1"></i>Favourites</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2">
+        <button class="icon-btn" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+        <div id="authNav"><a href="login.html" class="btn btn-outline-primary btn-sm me-2">Sign In</a><a href="register.html" class="btn btn-primary-custom btn-sm">Register</a></div>
+        <div id="userNav" class="d-none"><div class="dropdown"><button class="profile-pill" data-bs-toggle="dropdown"><img src="" alt="" id="navUserAvatar" class="rounded-circle" style="width:32px;height:32px"/><span id="navUserName"></span><i class="fas fa-chevron-down small"></i></button><ul class="dropdown-menu dropdown-menu-end"><li><a class="dropdown-item" href="favourites.html"><i class="fas fa-heart me-2"></i>Favourites</a></li><li><hr class="dropdown-divider"/></li><li><a class="dropdown-item text-danger" href="#" id="logoutBtn"><i class="fas fa-right-from-bracket me-2"></i>Logout</a></li></ul></div></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero"><div class="container"><h1>All <span style="color:#e0e7ff">Properties</span></h1><p>Browse our complete collection of verified listings</p></div></div>
+
+<div class="container py-5">
+  <div class="row g-4">
+    <!-- Filters -->
+    <div class="col-lg-3">
+      <div class="filter-box">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h6 class="filter-title mb-0"><i class="fas fa-sliders me-2"></i>Filters</h6>
+          <button class="btn btn-sm btn-link text-muted p-0" id="clearFilters">Clear all</button>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Search</label>
+          <div class="search-box-sm"><i class="fas fa-search"></i><input type="text" id="citySearch" placeholder="City or location…"/></div>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Status</label>
+          <select class="form-select form-select-sm" id="statusFilter"><option value="">All</option><option value="For Sale">For Sale</option><option value="For Rent">For Rent</option></select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Property Type</label>
+          <div id="typeFilters">
+            <div class="form-check"><input class="form-check-input type-check" type="checkbox" id="t-villa" value="Villa"/><label class="form-check-label" for="t-villa">Villa</label></div>
+            <div class="form-check"><input class="form-check-input type-check" type="checkbox" id="t-apt" value="Apartment"/><label class="form-check-label" for="t-apt">Apartment</label></div>
+            <div class="form-check"><input class="form-check-input type-check" type="checkbox" id="t-house" value="House"/><label class="form-check-label" for="t-house">House</label></div>
+            <div class="form-check"><input class="form-check-input type-check" type="checkbox" id="t-condo" value="Condo"/><label class="form-check-label" for="t-condo">Condo</label></div>
+            <div class="form-check"><input class="form-check-input type-check" type="checkbox" id="t-land" value="Land"/><label class="form-check-label" for="t-land">Land</label></div>
+          </div>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Min Bedrooms</label>
+          <select class="form-select form-select-sm" id="bedroomFilter"><option value="0">Any</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Max Price: <span id="priceLabel">$2M</span></label>
+          <input type="range" class="form-range" id="priceRange" min="0" max="2000000" value="2000000" step="50000"/>
+          <div class="d-flex justify-content-between small text-muted"><span>$0</span><span>$2M+</span></div>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Sort By</label>
+          <select class="form-select form-select-sm" id="sortProps"><option value="default">Default</option><option value="price-low">Price: Low to High</option><option value="price-high">Price: High to Low</option><option value="area-high">Largest Area</option><option value="newest">Newest</option></select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="col-lg-9">
+      <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+        <p class="mb-0 text-muted small"><span id="resultsCount">0</span> properties found</p>
+      </div>
+      <div class="row g-4" id="propertiesGrid"></div>
+      <div class="d-flex justify-content-center mt-4"><nav><ul class="pagination" id="propPagination"></ul></nav></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/theme.js"></script><script src="js/auth.js"></script><script src="js/data.js"></script>
+<script src="js/properties.js"></script>
+</body>
+</html>
